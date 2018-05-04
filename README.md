@@ -60,8 +60,8 @@ $ cat ~/.aws/config
 region = us-east-1
 $ cat ~/.aws/credentials
 [default]
-aws_access_key_id = AKIAI4FLFVEXDEYPZUEA
-aws_secret_access_key = 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
+aws_access_key_id = AXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+aws_secret_access_key = 9XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxx
 $
 ```
 
@@ -104,8 +104,8 @@ export AWS_SECRET_ACCESS_KEY='vu0mGh5wBu2In8upCrQf+JyvU9JN9FJUDJTRpD9x'
 ./ec2_validate.py
 [ $? -ne 0 ] && echo -e "\n\nError: something went wrong\n"
 
-export AWS_ACCESS_KEY_ID='AKIAI4FLFVEXDEYPZUEA'
-export AWS_SECRET_ACCESS_KEY='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'
+export AWS_ACCESS_KEY_ID='AXXXXXXXXXXXXXXXXXXXXXXXXX'
+export AWS_SECRET_ACCESS_KEY='9XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx'
 
 ./ec2_validate.py
 [ $? -ne 0 ] && echo -e "Error: something went wrong\n"
