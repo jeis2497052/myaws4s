@@ -4,7 +4,6 @@
 ## tag value called Owner
 ## type could be unknown - origin task snippet shown below:
 
-
 ```
 
 Using your favorite high-level language (Python, Ruby, Perl, or
@@ -26,7 +25,6 @@ AWS Secret: vu0mGh5wBu2In8upCrQf+JyvU9JN9FJUDJTRpD9x
 
 You can submit with a git repository, zip file, or whatever you’re comfortable with.
 
-
 ```
 
 
@@ -37,9 +35,8 @@ You can submit with a git repository, zip file, or whatever you’re comfortable
 # validate keys - issue to start - Kevin sent fresh keys
 
 
-```
-python
-Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+```python
+Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34)
 [GCC 7.3.0] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import boto3
@@ -61,7 +58,7 @@ botocore.exceptions.ClientError: An error occurred (AuthFailure) when calling th
 $ cat ~/.aws/config
 [default]
 region = us-east-1
-$ cat ~/.aws/credentials 
+$ cat ~/.aws/credentials
 [default]
 aws_access_key_id = AKIAI4FLFVEXDEYPZUEA
 aws_secret_access_key = 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
@@ -70,9 +67,8 @@ $
 
 # Validate updated keys
 
-```sh
-python 
-Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34) 
+```python
+Python 2.7.15rc1 (default, Apr 15 2018, 21:51:34)
 [GCC 7.3.0] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import boto3
@@ -83,6 +79,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> quit()
 ```
 
+# sample shell script using variables to change the environment
 
 ```sh
 ./runec2
@@ -119,3 +116,69 @@ so I removed script from repo
 ```
 
 # Start solving this assignment.
+## Access provided is very restricted, for example via cli:
+
+```sh
+aws ec2 describe-instances
+{
+    "Reservations": []
+}
+```
+
+## One more set of cli with very restricted access
+```sh
+$ aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId, Hypervisor, NetworkInterfaces[0].Attachment.DeleteOnTermination]'
+
+[]
+$ aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId]'
+
+[]
+$ aws ec2 describe-instances --query 'Reservations[*].Instances[*]'
+[]
+$ 
+```
+
+### And in an ipython shell no instances will print
+
+```python
+ipython3
+Python 3.6.5 (default, Apr  1 2018, 05:46:30)
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.5.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: import boto3
+In [1]: import boto3
+
+In [2]: s = boto3.Session()
+In [2]: s = boto3.Session()
+
+In [3]: ec2 = s.resource('ec2')
+In [3]: ec2 = s.resource('ec2')
+
+In [4]: for i in ec2.instances.all(): print(i)
+In [4]: for i in ec2.instances.all(): print(i)
+
+In [5]:
+```
+
+
+
+# Reference links
+
+[ipython gist](https://gist.github.com/iMilnb/0ff71b44026cfd7894f8)
+
+[boto3](http://boto3.readthedocs.io/en/latest/guide/quickstart.html)
+
+[another descrbe_instance page](https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_instances)
+
+[python gist](https://gist.githubusercontent.com/iMilnb/df47cd6aea9eeac153ff/raw/bf0a5d743b044897d3fed54be2891e53737c5fd1/ec2.py)
+
+[stackoverflow ec2 boto3](https://stackoverflow.com/questions/38112770/iterate-thru-ec2-describe-instance-boto3)
+
+[aws cli](https://aws.amazon.com/cli/)
+
