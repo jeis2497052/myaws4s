@@ -83,4 +83,39 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> quit()
 ```
 
+
+```sh
+./runec2
+Traceback (most recent call last):
+  File "./ec2_validate.py", line 8, in <module>
+    RESPONSE = EC2.describe_instances()
+  File "/home/jeis247/Public/jeis2497052/boto3/src/botocore/botocore/client.py", line 314, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/jeis247/Public/jeis2497052/boto3/src/botocore/botocore/client.py", line 612, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (AuthFailure) when calling the DescribeInstances operation: AWS was not able to validate the provided access credentials
+
+
+Error: something went wrong
+
+{u'Reservations': [], 'ResponseMetadata': {'RetryAttempts': 0, 'HTTPStatusCode': 200, 'RequestId': '604c35c3-debf-470a-bfd8-383657abc2b9', 'HTTPHeaders': {'transfer-encoding': 'chunked', 'vary': 'Accept-Encoding', 'server': 'AmazonEC2', 'content-type': 'text/xml;charset=UTF-8', 'date': 'Fri, 04 May 2018 14:17:28 GMT'}}}
+
+
+#!/usr/bin/env bash
+export AWS_ACCESS_KEY_ID='AKIAII52CLCS24MEZM4A'
+export AWS_SECRET_ACCESS_KEY='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'
+./ec2_validate.py
+[ $? -ne 0 ] && echo -e "\n\nError: something went wrong\n"
+
+export AWS_ACCESS_KEY_ID='AKIAI4FLFVEXDEYPZUEA'
+export AWS_SECRET_ACCESS_KEY='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'
+
+./ec2_validate.py
+[ $? -ne 0 ] && echo -e "Error: something went wrong\n"
+
+BTW, git guardian is awesome as I was sent email regarding the keys in bash
+so I removed script from repo
+
+```
+
 # Start solving this assignment.
