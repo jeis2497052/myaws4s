@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# emacs
+*~
+
 # C extensions
 *.so
 
@@ -99,3 +102,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# mac rubish
+.DS_Store
+
+# other
+.nfs.*
+*.orig
+*.rej
+*.exe
+.*.swp
